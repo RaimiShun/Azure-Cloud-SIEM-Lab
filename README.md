@@ -49,3 +49,6 @@ Event
 - **EventID 4740**: Identified domain account lockout triggers caused by threshold violations.
 - **EventID 4624**: Verified legitimate logon completion for account remediation and tracking.
 
+## Advanced Threat Investigations
+* **[INC-2026-0811: Phishing Triage & Endpoint Persistence Incident](docs/Phishing_Threat_Triage.md)**
+  * Detailed investigation report covering email header breakdown, Base64 decoding via CyberChef, VirusTotal threat intelligence verification, and multi-channel KQL correlation for Windows Event IDs 4625, 4740, and 7045.
