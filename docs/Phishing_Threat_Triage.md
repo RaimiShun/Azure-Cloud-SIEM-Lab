@@ -58,3 +58,28 @@ Analyzed a live inbound phishing attack targeting personal email infrastructure 
 * **Key Takeaway:** Demonstrates how threat actors leverage trusted cloud infrastructure (GCP bucket storage) combined with Base64 encoding to bypass traditional secure email gateways (SEGs).
 
 * <img width="1916" height="2084" alt="Screenshot 2026-08-11 152626" src="https://github.com/user-attachments/assets/a3c3934f-1440-4f04-87fc-692c674dbd4a" />
+
+## Case Study Response & Remediation Actions
+### 1. **DMARC Policy Audit & Gateway Policy Recommendations:** 
+Queried the sending infrastructure's DMARC DNS record (`nslookup -type=TXT _dmarc.sb021.iptv-bitcoin-france.biz.ua`) to evaluate perimeter alignment enforceability.
+<img width="1732" height="917" alt="Screenshot 2026-08-12 100708" src="https://github.com/user-attachments/assets/e20bb7f0-5d3e-48f5-a529-59b9917c5b03" />
+
+* **Finding:** The sending infrastructure lacks a published DMARC record, permitting spoofed header messages to pass initial SPF checks.
+* **Enterprise Recommendation:** Enforce strict inbound Secure Email Gateway (SEG) rules to quarantine or reject (p=reject) external messages that lack valid domain alignment.
+
+-----
+
+### 2. **Infrastructure Abuse Submission & Email Perimeter Containment:** 
+Initiated targeted abuse reporting to trigger malicious domain takedowns and configured mail filtering controls to block repeated attempts.
+* **Takedown Request:** Submitted the extracted malicious GCP payload URL (`https://storage.googleapis.com/midfielders/midfielders.html#`)
+<img width="1916" height="2080" alt="Screenshot 2026-08-12 100138" src="https://github.com/user-attachments/assets/dad5e71e-b4ef-4173-838a-f20aed26d5a2" />
+
+* **Perimeter Filter Rule:** Created a targeted inbox filter to immediately drop and purge subsequent inbound traffic originating from sb021.iptv-bitcoin-france.biz.ua
+<img width="1918" height="2086" alt="Screenshot 2026-08-12 101842" src="https://github.com/user-attachments/assets/d332c19b-6322-4661-a363-b1ca313e380c" />
+
+-----
+
+### 3. **Host Level Perimeter Blocking (IoC Isolation):** 
+Executed perimeter containment on the local endpoint to block outbound communication channels to the identified attacker infrastructure.
+* **Firewall Enforcement:** Created an explicit outbound block rule (Block - Phishing IoC) within Windows Defender Firewall targeting IP address 147.135.203.120, preventing host-level callbacks or payload retrievals.
+<img width="1916" height="346" alt="Screenshot 2026-08-12 102328" src="https://github.com/user-attachments/assets/7ecab517-60bf-44e1-9e51-c0cda99f11b5" />
