@@ -49,6 +49,12 @@ Event
 - **EventID 4740**: Identified domain account lockout triggers caused by threshold violations.
 - **EventID 4624**: Verified legitimate logon completion for account remediation and tracking.
 
+----
+
 ## Advanced Threat Investigations
 * **[INC-2026-0811: Phishing Triage & Endpoint Persistence Incident](docs/Phishing_Threat_Triage.md)**
   * Detailed investigation report covering email header breakdown, Base64 decoding via CyberChef, VirusTotal threat intelligence verification, and multi-channel KQL correlation for Windows Event IDs 4625, 4740, and 7045.
+
+* **[INC-2026-0812: Living-off-the-Land Execution & Command-Line Auditing](docs/Living-off-the-Land%20Execution%20%26%20Command-Line%20Auditing.md)**
+    * Hands-on threat hunting report covering domain-wide GPO process creation auditing, local Event ID 4688 verification, and KQL query analysis in Azure Log Analytics to detect certutil.exe payload downloads.
+
